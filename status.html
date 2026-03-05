@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HomeLinkGH Status</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        .status { color: #4CAF50; font-size: 24px; font-weight: bold; }
+        .timestamp { color: #666; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>HomeLinkGH Status</h1>
+    <div class="status">✅ Website is ONLINE</div>
+    <div class="timestamp">Last updated: <span id="timestamp"></span></div>
+    <p><a href="index.html">← Back to Homepage</a></p>
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+    </script>
+</body>
+</html>

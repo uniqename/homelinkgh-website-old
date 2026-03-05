@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="40" cy="40" r="35" fill="#2E8B57" stroke="#006B3C" stroke-width="2"/>
+  
+  <!-- House icon -->
+  <path d="M20 45 L40 25 L60 45 L55 45 L55 55 L45 55 L45 50 L35 50 L35 55 L25 55 L25 45 Z" 
+        fill="white" stroke="none"/>
+  
+  <!-- Chimney -->
+  <rect x="48" y="28" width="4" height="8" fill="white"/>
+  
+  <!-- Door -->
+  <rect x="37" y="50" width="6" height="5" fill="#2E8B57"/>
+  <circle cx="41" cy="52.5" r="0.5" fill="white"/>
+  
+  <!-- Text: HomeLinkGH -->
+  <text x="85" y="30" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#2E8B57">
+    HomeLink
+  </text>
+  <text x="85" y="50" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#006B3C">
+    GH
+  </text>
+  
+  <!-- Ghana flag accent -->
+  <rect x="85" y="55" width="30" height="8" fill="#CE1126"/>
+  <rect x="85" y="57.67" width="30" height="2.67" fill="#FCD116"/>
+  <rect x="85" y="60.33" width="30" height="2.67" fill="#006B3C"/>
+  
+  <!-- Tagline -->
+  <text x="85" y="72" font-family="Arial, sans-serif" font-size="8" fill="#666">
+    Professional Home Services
+  </text>
+</svg>

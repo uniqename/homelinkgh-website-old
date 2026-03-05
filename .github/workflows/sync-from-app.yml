@@ -1,0 +1,63 @@
+name: Sync Website from App Repository
+
+# Trigger when main app repository is updated
+on:
+  repository_dispatch:
+    types: [website-update]
+  workflow_dispatch:  # Allow manual trigger
+  schedule:
+    # Check for updates every hour
+    - cron: '0 * * * *'
+
+jobs:
+  sync-website:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout this repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Checkout source repository
+      uses: actions/checkout@v4
+      with:
+        repository: ${{ github.repository_owner }}/blazer_home_services_app
+        path: source-repo
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Copy website files from source repository
+      run: |
+        # Copy website files from the source repository
+        cp source-repo/homelinkgh-website/index.html . || echo "index.html not found"
+        cp source-repo/homelinkgh-website/privacy.html privacy.html || echo "privacy.html not found"
+        cp source-repo/homelinkgh-website/terms.html terms.html || echo "terms.html not found"
+        cp source-repo/homelinkgh-website/support.html support.html || echo "support.html not found"
+        cp source-repo/homelinkgh-website/account-deletion.html account-deletion.html || echo "account-deletion.html not found"
+        cp source-repo/homelinkgh-website/_redirects . || echo "_redirects not found"
+        cp source-repo/homelinkgh-website/style.css . || echo "style.css not found"
+        cp source-repo/homelinkgh-website/logo.png . || echo "logo.png not found"
+        cp source-repo/homelinkgh-website/favicon.ico . || echo "favicon.ico not found"
+    
+    - name: Check for changes
+      id: changes
+      run: |
+        if git diff --quiet; then
+          echo "changed=false" >> $GITHUB_OUTPUT
+        else
+          echo "changed=true" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Commit and push changes
+      if: steps.changes.outputs.changed == 'true'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add .
+        git commit -m "🔄 Auto-sync website files from main app repository
+        
+        Updated website files from blazer_home_services_app/homelinkgh-website/
+        Triggered by GitHub Action sync
+        
+        🤖 Automated sync"
+        git push
